@@ -32,7 +32,7 @@ public class JdbcTemplateTemRepositoryV1 implements ItemRepository {
 
     @Override
     public Item save(Item item) {
-        String sql = "insert into item(item_name, price, quantity) value(?,?,?)";
+        String sql = "insert into item (item_name, price, quantity) values (?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         template.update(connection -> {
             // 자동 증가 키
