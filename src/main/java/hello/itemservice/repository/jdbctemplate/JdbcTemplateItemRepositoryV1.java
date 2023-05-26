@@ -22,11 +22,11 @@ import java.util.Optional;
  * JdbcTemplate
  */
 @Slf4j
-public class JdbcTemplateTemRepositoryV1 implements ItemRepository {
+public class JdbcTemplateItemRepositoryV1 implements ItemRepository {
 
     private final JdbcTemplate template;
 
-    public JdbcTemplateTemRepositoryV1(DataSource datasource) {
+    public JdbcTemplateItemRepositoryV1(DataSource datasource) {
         this.template = new JdbcTemplate(datasource);
     }
 
