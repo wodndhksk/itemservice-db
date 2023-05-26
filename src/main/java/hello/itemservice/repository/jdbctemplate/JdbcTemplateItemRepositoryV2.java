@@ -32,19 +32,19 @@ import java.util.Optional;
  * 3. BeanPropertyRowMapper
  */
 @Slf4j
-public class JdbcTemplateTemRepositoryV2 implements ItemRepository {
+public class JdbcTemplateItemRepositoryV2 implements ItemRepository {
 
 //    private final JdbcTemplate template;
 
     private final NamedParameterJdbcTemplate template;
 
-    public JdbcTemplateTemRepositoryV2(DataSource datasource) {
+    public JdbcTemplateItemRepositoryV2(DataSource datasource) {
         this.template = new NamedParameterJdbcTemplate(datasource);
     }
 
     @Override
     public Item save(Item item) {
-        String sql = "insert into item (item_name, price, quantity) values (:itemName, price, :quantity)";
+        String sql = "insert into item (item_name, price, quantity) values (:itemName, :price, :quantity)";
 
         SqlParameterSource param = new BeanPropertySqlParameterSource(item);
 
