@@ -9,29 +9,28 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Transactional
 @SpringBootTest // @SpringBootApplication 의 설정을 따라간다 (ItemServiceApplication.java 의 세팅)
 class ItemRepositoryTest {
 
     @Autowired
     ItemRepository itemRepository;
 
-    @Autowired
-    PlatformTransactionManager transactionManager;
-
-    TransactionStatus status;
+//    @Autowired
+//    PlatformTransactionManager transactionManager;
+//
+//    TransactionStatus status;
 
     @BeforeEach
     void beforeEach() {
         //트랜잭션 시작
-        status = transactionManager.getTransaction(new DefaultTransactionDefinition());
+//        status = transactionManager.getTransaction(new DefaultTransactionDefinition());
     }
 
     @AfterEach
@@ -41,9 +40,14 @@ class ItemRepositoryTest {
             ((MemoryItemRepository) itemRepository).clearStore();
         }
         // 트랜잭션 롤백
-        transactionManager.rollback(status);
+//        transactionManager.rollback(status);
     }
 
+    /**
+     * @Commit Transactional 에서 rollback 되지 않는다. (강제로 커밋) 또한 @Rollback(value = false) 를 사용해도 된다.
+     */
+//    @Commit
+//    @Transactional
     @Test
     void save() {
         //given
