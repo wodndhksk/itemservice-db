@@ -62,6 +62,7 @@ class ItemRepositoryTest {
     }
 
     @Test
+//    @Commit  // commit을 해야 update 쿼리 로그 확인 가능
     void updateItem() {
         //given
         Item item = new Item("item1", 10000, 10);
